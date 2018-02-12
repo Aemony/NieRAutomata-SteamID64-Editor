@@ -7,7 +7,7 @@ Allows users to edit the SteamID64 stored in the save files of NieR:Automata. Th
 * No dependency on any existing save file.
 
 ## Usage
-1. Download the editor from [the release section](https://github.com/Kaldaien/FAR/releases/latest).
+1. Download the editor from [the release section](https://github.com/Idearum/NieRAutomata-SteamID64-Editor/releases).
 
 2. Run the tool and open one of the save files (\*.dat) of NieR:Automata:
 
