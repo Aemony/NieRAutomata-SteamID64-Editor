@@ -37,7 +37,7 @@ namespace NieR_Automata_Editor
             Console.WriteLine("========= ReadSteamID =========");
 
             OpenFileDialog dlg = new OpenFileDialog();
-            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\NieR_Automata";
+            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\My Games\\NieR_Automata";
             dlg.Filter = "Data files (*.dat)|*.dat";
 
             if (dlg.ShowDialog() == DialogResult.OK)
