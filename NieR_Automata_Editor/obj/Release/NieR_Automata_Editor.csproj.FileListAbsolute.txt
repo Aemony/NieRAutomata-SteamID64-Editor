@@ -8,3 +8,13 @@ C:\Users\User\source\repos\NieR_Automata_Editor\NieR_Automata_Editor\obj\Release
 C:\Users\User\source\repos\NieR_Automata_Editor\NieR_Automata_Editor\obj\Release\NieR_Automata_Editor.csproj.CoreCompileInputs.cache
 C:\Users\User\source\repos\NieR_Automata_Editor\NieR_Automata_Editor\obj\Release\NieR_Automata_Editor.exe
 C:\Users\User\source\repos\NieR_Automata_Editor\NieR_Automata_Editor\obj\Release\NieR_Automata_Editor.pdb
+C:\Users\User\source\repos\NieRAutomata-SteamID64-Editor\NieR_Automata_Editor\bin\Release\NieR_Automata_Editor.exe.config
+C:\Users\User\source\repos\NieRAutomata-SteamID64-Editor\NieR_Automata_Editor\bin\Release\NieR_Automata_Editor.exe
+C:\Users\User\source\repos\NieRAutomata-SteamID64-Editor\NieR_Automata_Editor\bin\Release\NieR_Automata_Editor.pdb
+C:\Users\User\source\repos\NieRAutomata-SteamID64-Editor\NieR_Automata_Editor\obj\Release\NieR_Automata_Editor.csprojResolveAssemblyReference.cache
+C:\Users\User\source\repos\NieRAutomata-SteamID64-Editor\NieR_Automata_Editor\obj\Release\NieR_Automata_Editor.Form1.resources
+C:\Users\User\source\repos\NieRAutomata-SteamID64-Editor\NieR_Automata_Editor\obj\Release\NieR_Automata_Editor.Properties.Resources.resources
+C:\Users\User\source\repos\NieRAutomata-SteamID64-Editor\NieR_Automata_Editor\obj\Release\NieR_Automata_Editor.csproj.GenerateResource.Cache
+C:\Users\User\source\repos\NieRAutomata-SteamID64-Editor\NieR_Automata_Editor\obj\Release\NieR_Automata_Editor.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\NieRAutomata-SteamID64-Editor\NieR_Automata_Editor\obj\Release\NieR_Automata_Editor.exe
+C:\Users\User\source\repos\NieRAutomata-SteamID64-Editor\NieR_Automata_Editor\obj\Release\NieR_Automata_Editor.pdb
