@@ -13,7 +13,7 @@ Allows users to edit the SteamID64 stored in the save files of NieR:Automata. Th
 
    - **SlotData_#.dat** stores slot progression for slot 1-3.
    - **GameData.dat** stores general game progression, most obviously the main menu background.
-   - **System.dat** stores graphics settings.
+   - **SystemData.dat** stores graphics settings.
    
 3. Use https://steamid.xyz/, https://steamidfinder.com/, or https://steamid.co/ to locate the new SteamID64.
 
