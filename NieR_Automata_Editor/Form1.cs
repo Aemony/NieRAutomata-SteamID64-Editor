@@ -20,7 +20,7 @@ namespace NieR_Automata_Editor
         private byte[] byteSteamID64 = new byte[8];
         private UInt32 steamID3 = 0;
         private UInt64 steamID64 = 0;
-        private string lastStatus = "";
+        private string lastStatus = "Open a file to begin...";
 
         public Form1()
         {
@@ -84,6 +84,7 @@ namespace NieR_Automata_Editor
                     textBoxWorkingFile.Text = filePath;
                     textBoxWorkingFile.SelectionStart = textBoxWorkingFile.TextLength;
                     toolStripStatusLabel1.Text = "Read from file: " + BitConverter.ToString(byteSteamID64);
+                    lastStatus = toolStripStatusLabel1.Text;
 
                     // Check if a new ID is already written, and if so, enable the button
                     if (String.IsNullOrWhiteSpace(textBoxSteamID64_New.Text) == false && String.IsNullOrWhiteSpace(filePath) == false && textBoxSteamID64_New.Text != steamID64.ToString())
@@ -132,6 +133,7 @@ namespace NieR_Automata_Editor
                 textBoxSteamID3.Text = steamID3.ToString();
                 textBoxSteamID64.Text = steamID64.ToString();
                 toolStripStatusLabel1.Text = "Wrote to file: " + BitConverter.ToString(byteSteamID64);
+                lastStatus = toolStripStatusLabel1.Text;
                 buttonSteamIDUpdate.Enabled = false;
 
             } catch (Exception ex)
@@ -155,28 +157,40 @@ namespace NieR_Automata_Editor
         {
             textBoxSteamID64_New.Text = Regex.Replace(textBoxSteamID64_New.Text, @"[^\d]", "");
 
-            if(textBoxSteamID64_New.Text.Length > 0)
+            UInt64 tmp;
+            if (UInt64.TryParse(textBoxSteamID64_New.Text, out tmp) == true)
             {
-                // Create the new Steam Community link
-                linkLabelSteamID64_New.Links.Clear();
-                LinkLabel.Link linkSteamCommunityProfile_New = new LinkLabel.Link();
-                linkSteamCommunityProfile_New.LinkData = "http://steamcommunity.com/profiles/" + textBoxSteamID64_New.Text;
-                linkLabelSteamID64_New.Links.Add(linkSteamCommunityProfile_New);
-                linkLabelSteamID64_New.Enabled = true;
-            } else
-            {
-                linkLabelSteamID64_New.Links.Clear();
-                linkLabelSteamID64_New.Enabled = false;
-            }
+                toolStripStatusLabel1.Text = lastStatus;
 
-            // Check if a current file is loaded
-            if (String.IsNullOrWhiteSpace(textBoxSteamID64_New.Text) == false && String.IsNullOrWhiteSpace(filePath) == false && textBoxSteamID64_New.Text != steamID64.ToString())
-            {
-                buttonSteamIDUpdate.Enabled = true;
-            }
-            else
-            {
+                if (textBoxSteamID64_New.Text.Length > 0)
+                {
+                    // Create the new Steam Community link
+                    linkLabelSteamID64_New.Links.Clear();
+                    LinkLabel.Link linkSteamCommunityProfile_New = new LinkLabel.Link();
+                    linkSteamCommunityProfile_New.LinkData = "http://steamcommunity.com/profiles/" + textBoxSteamID64_New.Text;
+                    linkLabelSteamID64_New.Links.Add(linkSteamCommunityProfile_New);
+                    linkLabelSteamID64_New.Enabled = true;
+                }
+                else
+                {
+                    linkLabelSteamID64_New.Links.Clear();
+                    linkLabelSteamID64_New.Enabled = false;
+                }
+
+                // Check if a current file is loaded
+                if (String.IsNullOrWhiteSpace(textBoxSteamID64_New.Text) == false && String.IsNullOrWhiteSpace(filePath) == false && textBoxSteamID64_New.Text != steamID64.ToString())
+                {
+                    buttonSteamIDUpdate.Enabled = true;
+                }
+                else
+                {
+                    buttonSteamIDUpdate.Enabled = false;
+                }
+            } else {
+                toolStripStatusLabel1.Text = "Could not convert SteamID64 to UInt64. Incorrect SteamID64?";
                 buttonSteamIDUpdate.Enabled = false;
+                linkLabelSteamID64_New.Enabled = false;
+
             }
         }
 
