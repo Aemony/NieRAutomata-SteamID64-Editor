@@ -1,5 +1,5 @@
 # NieRAutomata-SteamID64-Editor
-Allows users to edit the SteamID64 stored in the data files of NieR:Automata.
+Allows users to edit the SteamID64 stored in the save files of NieR:Automata.
 
 ## Features
 * Convert SteamID64 to readable format
