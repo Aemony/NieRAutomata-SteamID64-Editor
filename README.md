@@ -1,5 +1,5 @@
 # NieRAutomata-SteamID64-Editor
-Allows users to edit the SteamID64 stored in the save files of NieR:Automata. This tool have no dependency on existing save files, unlike other alternatives that rely on a correctly formatted GameData.dat file.
+Allows users to edit the SteamID64 stored in the save files of NieR:Automata. This tool have no dependency on existing save files, unlike other alternatives that rely on a correctly formatted GameData.dat file to function.
 
 ## Features
 * Converts the stored SteamID64 to a human-readable format.
@@ -7,7 +7,6 @@ Allows users to edit the SteamID64 stored in the save files of NieR:Automata. Th
 * No dependency on any existing save file.
 
 ## Usage
-
 1. Download the editor from [the release section](https://github.com/Kaldaien/FAR/releases/latest).
 
 2. Run the tool and open one of the save files (\*.dat) of NieR:Automata:
@@ -27,5 +26,8 @@ Allows users to edit the SteamID64 stored in the save files of NieR:Automata. Th
 ## Preview
 ![Screenshot of the editor](screenshot.png "Screenshot of the editor")
 
+## Credits
+- [jimmyazrael](https://github.com/jimmyazrael) for his initial [NierAutoModSave](https://github.com/jimmyazrael/NierAutoModSave) that showed that this was possible.
+
 ## License
-See [LICENSE](LICENSE)
+See [LICENSE](LICENSE).
