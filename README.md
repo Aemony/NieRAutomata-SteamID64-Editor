@@ -6,6 +6,10 @@ Allows users to edit the SteamID64 stored in the save files of NieR:Automata. Th
 * Steam Community profile links for SteamID64 validation.
 * No dependency on any existing save file.
 
+## Requirement
+
+* .NET Framework 4
+
 ## Usage
 1. Download the editor from [the release section](https://github.com/Idearum/NieRAutomata-SteamID64-Editor/releases).
 
