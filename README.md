@@ -9,4 +9,4 @@ Allows users to edit the SteamID64 stored in the data files of NieR:Automata.
 ![Screenshot of the editor](screenshot.png "Screenshot of the editor")
 
 ## License
-See [LICENSE.md](LICENSE.md)
+See [LICENSE](LICENSE)
