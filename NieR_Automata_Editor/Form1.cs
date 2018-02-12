@@ -53,9 +53,7 @@ namespace NieR_Automata_Editor
                 {
                     fileOffset = 0;
                 }
-
-                File.Copy(filePath, filePath + DateTime.Now.ToString("_yyyy-MM-dd_HH-mm-ss.bak"));
-
+                
                 try {
                     using (FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                     {
@@ -121,6 +119,10 @@ namespace NieR_Automata_Editor
 
             try
             {
+                // Create a backup first
+                File.Copy(filePath, filePath + DateTime.Now.ToString("_yyyy-MM-dd_HH-mm-ss.bak"));
+
+                // Now overwrite the data
                 using (Stream stream = File.Open(filePath, FileMode.Open, FileAccess.Write))
                 {
                     stream.Position = fileOffset;
