@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NieRAutomata_SteamID64_Editor")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("NieR: Automata - SteamID64 Editor")]
+[assembly: AssemblyDescription("SteamID64 editor for the save files of NieR:Automata.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NieRAutomata_SteamID64_Editor")]
+[assembly: AssemblyProduct("NieR: Automata - SteamID64 Editor")]
 [assembly: AssemblyCopyright("Copyright © 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
