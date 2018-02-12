@@ -21,9 +21,6 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
-/NieR_Automata_Editor/obj/
-/NieR_Automata_Editor/bin/
-
 
 # Visual Studio 2015 cache/options directory
 .vs/
