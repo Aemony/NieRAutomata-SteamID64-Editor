@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace NieR_Automata_Editor
+namespace NieRAutomata_SteamID64_Editor
 {
-    partial class Form1
+    partial class FormSteamID64Editor
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@ namespace NieR_Automata_Editor
             this.textBoxSteamID64_New = new System.Windows.Forms.TextBox();
             this.linkLabelSteamID64_New = new System.Windows.Forms.LinkLabel();
             this.labelSteamID_New = new System.Windows.Forms.Label();
-            this.buttonSteamIDUpdate = new System.Windows.Forms.Button();
+            this.buttonUpdate = new System.Windows.Forms.Button();
             this.linkLabelSteamID64 = new System.Windows.Forms.LinkLabel();
             this.textBoxSteamID3 = new System.Windows.Forms.TextBox();
             this.labelSteamID3 = new System.Windows.Forms.Label();
@@ -90,7 +90,7 @@ namespace NieR_Automata_Editor
             this.groupBoxSteamID.Controls.Add(this.textBoxSteamID64_New);
             this.groupBoxSteamID.Controls.Add(this.linkLabelSteamID64_New);
             this.groupBoxSteamID.Controls.Add(this.labelSteamID_New);
-            this.groupBoxSteamID.Controls.Add(this.buttonSteamIDUpdate);
+            this.groupBoxSteamID.Controls.Add(this.buttonUpdate);
             this.groupBoxSteamID.Controls.Add(this.linkLabelSteamID64);
             this.groupBoxSteamID.Controls.Add(this.textBoxSteamID3);
             this.groupBoxSteamID.Controls.Add(this.labelSteamID3);
@@ -137,16 +137,16 @@ namespace NieR_Automata_Editor
             this.labelSteamID_New.TabIndex = 11;
             this.labelSteamID_New.Text = "New SteamID64";
             // 
-            // buttonSteamIDUpdate
+            // buttonUpdate
             // 
-            this.buttonSteamIDUpdate.Enabled = false;
-            this.buttonSteamIDUpdate.Location = new System.Drawing.Point(230, 181);
-            this.buttonSteamIDUpdate.Name = "buttonSteamIDUpdate";
-            this.buttonSteamIDUpdate.Size = new System.Drawing.Size(75, 23);
-            this.buttonSteamIDUpdate.TabIndex = 10;
-            this.buttonSteamIDUpdate.Text = "Update";
-            this.buttonSteamIDUpdate.UseVisualStyleBackColor = true;
-            this.buttonSteamIDUpdate.Click += new System.EventHandler(this.buttonSteamIDUpdate_Click);
+            this.buttonUpdate.Enabled = false;
+            this.buttonUpdate.Location = new System.Drawing.Point(230, 181);
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpdate.TabIndex = 10;
+            this.buttonUpdate.Text = "Update";
+            this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // linkLabelSteamID64
             // 
@@ -198,7 +198,7 @@ namespace NieR_Automata_Editor
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(120, 17);
             this.toolStripStatusLabel1.Text = "Open a file to begin...";
             // 
-            // Form1
+            // FormSteamID64Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -209,7 +209,7 @@ namespace NieR_Automata_Editor
             this.Controls.Add(this.buttonOpenFile);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "FormSteamID64Editor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NieR: Automata - SteamID64 Editor";
             this.groupBoxSteamID.ResumeLayout(false);
@@ -231,7 +231,7 @@ namespace NieR_Automata_Editor
         private System.Windows.Forms.TextBox textBoxSteamID3;
         private System.Windows.Forms.Label labelSteamID3;
         private System.Windows.Forms.LinkLabel linkLabelSteamID64;
-        private System.Windows.Forms.Button buttonSteamIDUpdate;
+        private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Label labelSteamID_New;
         private System.Windows.Forms.LinkLabel linkLabelSteamID64_New;
         private System.Windows.Forms.TextBox textBoxSteamID64_New;

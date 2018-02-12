@@ -11,9 +11,9 @@ using System.Windows.Forms;
  * 
  */
 
-namespace NieR_Automata_Editor
+namespace NieRAutomata_SteamID64_Editor
 {
-    public partial class Form1 : Form
+    public partial class FormSteamID64Editor : Form
     {
         private string filePath = null;
         private int fileOffset = 0;
@@ -22,7 +22,7 @@ namespace NieR_Automata_Editor
         private UInt64 steamID64 = 0;
         private string lastStatus = "Open a file to begin...";
 
-        public Form1()
+        public FormSteamID64Editor()
         {
             InitializeComponent();
         }
@@ -32,10 +32,13 @@ namespace NieR_Automata_Editor
             ReadSteamID();
         }
 
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            WriteSteamID();
+        }
+
         private void ReadSteamID()
         {
-            Console.WriteLine("========= ReadSteamID =========");
-
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\My Games\\NieR_Automata";
             dlg.Filter = "Data files (*.dat)|*.dat";
@@ -61,32 +64,34 @@ namespace NieR_Automata_Editor
                         stream.Read(byteSteamID64, 0, 8);
                     }
 
-                    Console.WriteLine("Read: " + BitConverter.ToString(byteSteamID64));
 
                     // Convert to proper IDs.
                     // SteamID64 is stored as Little-Endian in the files, but as Intel is little-endian as well no reversal is needed
                     steamID3 = BitConverter.ToUInt32(byteSteamID64, 0);
                     textBoxSteamID3.Text = steamID3.ToString();
-                    Console.WriteLine("SteamID3: " + steamID3.ToString());
 
                     steamID64 = BitConverter.ToUInt64(byteSteamID64, 0);
                     textBoxSteamID64.Text = steamID64.ToString();
+#if DEBUG
+                    Console.WriteLine("Read: " + BitConverter.ToString(byteSteamID64));
+                    Console.WriteLine("SteamID3: " + steamID3.ToString());
                     Console.WriteLine("SteamID64: " + steamID64.ToString());
+#endif
 
                     // Misc
                     textBoxWorkingFile.Text = filePath;
                     textBoxWorkingFile.SelectionStart = textBoxWorkingFile.TextLength;
-                    toolStripStatusLabel1.Text = "Read from file: " + BitConverter.ToString(byteSteamID64);
+                    toolStripStatusLabel1.Text = "Read from " + Path.GetFileName(filePath) + ": " + BitConverter.ToString(byteSteamID64);
                     lastStatus = toolStripStatusLabel1.Text;
 
                     // Check if a new ID is already written, and if so, enable the button
-                    if (String.IsNullOrWhiteSpace(textBoxSteamID64_New.Text) == false && String.IsNullOrWhiteSpace(filePath) == false && textBoxSteamID64_New.Text != steamID64.ToString())
+                    if (String.IsNullOrWhiteSpace(textBoxSteamID64_New.Text) == false && String.IsNullOrWhiteSpace(filePath) == false && textBoxSteamID64_New.Text != textBoxSteamID64.Text)
                     {
-                        buttonSteamIDUpdate.Enabled = true;
+                        buttonUpdate.Enabled = true;
                     }
                     else
                     {
-                        buttonSteamIDUpdate.Enabled = false;
+                        buttonUpdate.Enabled = false;
                     }
                 } catch (Exception ex)
                 {
@@ -94,21 +99,20 @@ namespace NieR_Automata_Editor
                 }
             }
 
-            Console.WriteLine("========= END ReadSteamID =========");
         }
 
         private void WriteSteamID()
         {
-            Console.WriteLine("========= WriteSteamID =========");
-
             steamID64 = Convert.ToUInt64(textBoxSteamID64_New.Text);
             byteSteamID64 = BitConverter.GetBytes(steamID64);
             steamID3 = BitConverter.ToUInt32(byteSteamID64, 0); // Relies on byteSteamID64 having been updated. 
 
+#if DEBUG
             Console.WriteLine("New bytes: " + BitConverter.ToString(byteSteamID64));
             Console.WriteLine("New SteamID3: " + steamID3.ToString());
             Console.WriteLine("New SteamID64: " + steamID64.ToString());
-            
+#endif
+
             // SteamID64 is stored as Little-Endian in the files, but as Intel is little-endian as well no reversal is needed
 
             try
@@ -125,42 +129,48 @@ namespace NieR_Automata_Editor
 
                 textBoxSteamID3.Text = steamID3.ToString();
                 textBoxSteamID64.Text = steamID64.ToString();
-                toolStripStatusLabel1.Text = "Wrote to file: " + BitConverter.ToString(byteSteamID64);
+                toolStripStatusLabel1.Text = "Wrote to " + Path.GetFileName(filePath) + ": " + BitConverter.ToString(byteSteamID64);
                 lastStatus = toolStripStatusLabel1.Text;
-                buttonSteamIDUpdate.Enabled = false;
+                buttonUpdate.Enabled = false;
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
-            Console.WriteLine("========= END WriteSteamID =========");
+
         }
 
-        private void linkLabelSteamID64_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void textBoxSteamID64_TextChanged(object sender, EventArgs e)
         {
-            Process.Start(e.Link.LinkData as string);
-        }
-
-        private void buttonSteamIDUpdate_Click(object sender, EventArgs e)
-        {
-            WriteSteamID();
+            if (textBoxSteamID64.Text.Length > 0)
+            {
+                // Update the Steam Community link
+                linkLabelSteamID64.Links.Clear();
+                LinkLabel.Link linkSteamCommunityProfile = new LinkLabel.Link(0, 0, "http://steamcommunity.com/profiles/" + textBoxSteamID64.Text);
+                linkLabelSteamID64.Links.Add(linkSteamCommunityProfile);
+                linkLabelSteamID64.Enabled = true;
+            }
+            else
+            {
+                linkLabelSteamID64.Links.Clear();
+                linkLabelSteamID64.Enabled = false;
+            }
         }
 
         private void textBoxSteamID64_New_TextChanged(object sender, EventArgs e)
         {
             textBoxSteamID64_New.Text = Regex.Replace(textBoxSteamID64_New.Text, @"[^\d]", "");
-
-            UInt64 tmp;
-            if (UInt64.TryParse(textBoxSteamID64_New.Text, out tmp) == true)
+            
+            if (UInt64.TryParse(textBoxSteamID64_New.Text, out UInt64 unused) == true)
             {
                 toolStripStatusLabel1.Text = lastStatus;
 
                 if (textBoxSteamID64_New.Text.Length > 0)
                 {
-                    // Create the new Steam Community link
+                    // Update the Steam Community link
                     linkLabelSteamID64_New.Links.Clear();
-                    LinkLabel.Link linkSteamCommunityProfile_New = new LinkLabel.Link();
-                    linkSteamCommunityProfile_New.LinkData = "http://steamcommunity.com/profiles/" + textBoxSteamID64_New.Text;
+                    LinkLabel.Link linkSteamCommunityProfile_New = new LinkLabel.Link(0, 0, "http://steamcommunity.com/profiles/" + textBoxSteamID64_New.Text);
                     linkLabelSteamID64_New.Links.Add(linkSteamCommunityProfile_New);
                     linkLabelSteamID64_New.Enabled = true;
                 }
@@ -171,17 +181,16 @@ namespace NieR_Automata_Editor
                 }
 
                 // Check if a current file is loaded
-                if (String.IsNullOrWhiteSpace(textBoxSteamID64_New.Text) == false && String.IsNullOrWhiteSpace(filePath) == false && textBoxSteamID64_New.Text != steamID64.ToString())
+                if (String.IsNullOrWhiteSpace(textBoxSteamID64_New.Text) == false && String.IsNullOrWhiteSpace(filePath) == false && textBoxSteamID64_New.Text != textBoxSteamID64.Text)
                 {
-                    buttonSteamIDUpdate.Enabled = true;
+                    buttonUpdate.Enabled = true;
                 }
                 else
                 {
-                    buttonSteamIDUpdate.Enabled = false;
+                    buttonUpdate.Enabled = false;
                 }
             } else {
-                toolStripStatusLabel1.Text = "Could not convert SteamID64 to UInt64. Incorrect SteamID64?";
-                buttonSteamIDUpdate.Enabled = false;
+                buttonUpdate.Enabled = false;
                 linkLabelSteamID64_New.Enabled = false;
 
             }
@@ -209,27 +218,14 @@ namespace NieR_Automata_Editor
             toolStripStatusLabel1.Text = lastStatus;
         }
 
-        private void linkLabelSteamID64_New_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabelSteamID64_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(e.Link.LinkData as string);
         }
 
-        private void textBoxSteamID64_TextChanged(object sender, EventArgs e)
+        private void linkLabelSteamID64_New_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (textBoxSteamID64.Text.Length > 0)
-            {
-                // Create the Steam Community link
-                linkLabelSteamID64.Links.Clear();
-                LinkLabel.Link linkSteamCommunityProfile = new LinkLabel.Link();
-                linkSteamCommunityProfile.LinkData = "http://steamcommunity.com/profiles/" + steamID64.ToString();
-                linkLabelSteamID64.Links.Add(linkSteamCommunityProfile);
-                linkLabelSteamID64.Enabled = true;
-            }
-            else
-            {
-                linkLabelSteamID64_New.Links.Clear();
-                linkLabelSteamID64_New.Enabled = false;
-            }
+            Process.Start(e.Link.LinkData as string);
         }
     }
 }
