@@ -74,6 +74,7 @@ namespace NieR_Automata_Editor
             this.textBoxSteamID64.ReadOnly = true;
             this.textBoxSteamID64.Size = new System.Drawing.Size(147, 20);
             this.textBoxSteamID64.TabIndex = 5;
+            this.textBoxSteamID64.TextChanged += new System.EventHandler(this.textBoxSteamID64_TextChanged);
             // 
             // labelSteamID64
             // 
@@ -146,8 +147,6 @@ namespace NieR_Automata_Editor
             this.buttonSteamIDUpdate.Text = "Update";
             this.buttonSteamIDUpdate.UseVisualStyleBackColor = true;
             this.buttonSteamIDUpdate.Click += new System.EventHandler(this.buttonSteamIDUpdate_Click);
-            this.buttonSteamIDUpdate.MouseEnter += new System.EventHandler(this.buttonSteamIDUpdate_MouseEnter);
-            this.buttonSteamIDUpdate.MouseLeave += new System.EventHandler(this.buttonSteamIDUpdate_MouseLeave);
             // 
             // linkLabelSteamID64
             // 

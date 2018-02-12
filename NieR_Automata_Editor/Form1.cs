@@ -72,13 +72,6 @@ namespace NieR_Automata_Editor
                     steamID64 = BitConverter.ToUInt64(byteSteamID64, 0);
                     textBoxSteamID64.Text = steamID64.ToString();
                     Console.WriteLine("SteamID64: " + steamID64.ToString());
-                    
-                    // Create the Steam Community link
-                    linkLabelSteamID64.Links.Clear();
-                    LinkLabel.Link linkSteamCommunityProfile = new LinkLabel.Link();
-                    linkSteamCommunityProfile.LinkData = "http://steamcommunity.com/profiles/" + steamID64.ToString();
-                    linkLabelSteamID64.Links.Add(linkSteamCommunityProfile);
-                    linkLabelSteamID64.Enabled = true;
 
                     // Misc
                     textBoxWorkingFile.Text = filePath;
@@ -221,14 +214,22 @@ namespace NieR_Automata_Editor
             Process.Start(e.Link.LinkData as string);
         }
 
-        private void buttonSteamIDUpdate_MouseEnter(object sender, EventArgs e)
+        private void textBoxSteamID64_TextChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void buttonSteamIDUpdate_MouseLeave(object sender, EventArgs e)
-        {
-
+            if (textBoxSteamID64.Text.Length > 0)
+            {
+                // Create the Steam Community link
+                linkLabelSteamID64.Links.Clear();
+                LinkLabel.Link linkSteamCommunityProfile = new LinkLabel.Link();
+                linkSteamCommunityProfile.LinkData = "http://steamcommunity.com/profiles/" + steamID64.ToString();
+                linkLabelSteamID64.Links.Add(linkSteamCommunityProfile);
+                linkLabelSteamID64.Enabled = true;
+            }
+            else
+            {
+                linkLabelSteamID64_New.Links.Clear();
+                linkLabelSteamID64_New.Enabled = false;
+            }
         }
     }
 }
